@@ -1,0 +1,34 @@
+<label>Server Name</label>
+<!-- <input
+   type="text"
+   class="form-control"
+   (input)="onUpdateServerName($event)"> -->
+
+   <!-- [(ngModel)} uses two-way data binding -->
+<input
+   type="text"
+   class="form-control"
+   [(ngModel)]="serverName">
+
+<p> You picked {{ serverName }} </p>
+<button 
+	class="btn btn-primary"
+	[disabled]="!allowNewServer"
+	(click)="onCreateServer()">Add A Server</button>
+
+<!-- <p> {{serverCreationStatus}} </p> -->
+<!--ngIf is a directive that needs a boolean (true or false) value returned in the quotation marks -->
+<!-- It will show the message if true and not show the message if false  -->
+<!-- The * before ngIf means it is a structural directive.  It changes the DOM. -->
+<p *ngIf="serverCreated; else noServer">Server was created, server name is {{ serverName }}</p>
+<ng-template #noServer>
+   <p> No server was created!</p>
+</ng-template>
+<!-- String Interpolation -->
+<!-- <p> {{ allowNewServer }} </p> -->
+
+<!-- Property Binding -->
+<!-- <p [innerText]="allowNewServer"></p> -->
+
+<app-server></app-server>
+<app-server></app-server>
