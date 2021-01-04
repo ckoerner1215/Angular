@@ -2,4 +2,5 @@
 <!-- With the [] we are binding to a property of the directive.  ngStyle is a property.-->
 <!-- ngStyle needs a javascript object.  key/value pairs -->
 <!-- ngStyle allows you to dynmically update the styles -->
-<p [ngStyle]="{backgroundColor : getColor()}">Server with ID {{serverId}} is {{getServerStatus()}} </p>
+<p [ngStyle]="{backgroundColor : getColor()}"
+    [ngClass]="{online: serverStatus === 'online'}">Server with ID {{serverId}} is {{getServerStatus()}} </p>

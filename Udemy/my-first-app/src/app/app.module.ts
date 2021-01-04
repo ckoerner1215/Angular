@@ -12,6 +12,7 @@ import { ServersComponent } from './servers/servers.component';
 import { SuccessAlertComponent } from './success-alert/success-alert.component';
 import { WarningAlertComponent } from './warning-alert/warning-alert.component';
 import { UserInputComponent } from './user-input/user-input.component';
+import { DirectivesAssignmentComponent } from './directives-assignment/directives-assignment.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { UserInputComponent } from './user-input/user-input.component';
     ServersComponent,
     SuccessAlertComponent,
     WarningAlertComponent,
-    UserInputComponent
+    UserInputComponent,
+    DirectivesAssignmentComponent
   ],
   imports: [
     BrowserModule,

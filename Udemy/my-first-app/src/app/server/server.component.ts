@@ -1,8 +1,15 @@
 import { Component } from '@angular/core';
 
+   //Note that the back-ticks `` allow us to 
+   //have mulitple lines for the styles below:
 @Component({
    selector: 'app-server',
-   templateUrl: './server.component.html'
+   templateUrl: './server.component.html',
+   styles: [`
+      .online {
+         color: white;
+      }
+   `]
 } )
 export class ServerComponent {
    serverId: number = 10;

@@ -1,0 +1,27 @@
+<p>directives-assignment works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- add a click listener to the button, uses event binding-->
+            <!-- also uses the showSecret varible/property in directives-assignment.component.ts file-->
+            <!-- we make ! because we want to toggle it - change the value each time we click the button-->
+            <!-- <button class="btn btn-primary" (click)="showSecret = !showSecret">Display Details</button> -->
+            <button class="btn btn-primary" (click)="onToggleDetails()">Display Details</button>
+
+            <!-- add ngIf directive to the paragraph-->
+            <p *ngIf="showSecret">Secret Password = tuna</p>
+            <!-- logItem is any name.  It is an element of the log array in the .ts file-->
+            <!-- Use string interpolation to output each element of log (logItem)-->
+            <!-- Use property binging for ngStyle and ngClass directives.  Pass a javascript object configuring our styles and css class-->
+            <!-- If logItem is greater than 5 then have the background color of it be blue, otherwise have it be white (or transparent)-->
+            <!-- We are using a nested loop.  In the inner loop we have access to the index of the first loop.  It is a built-in variable called index-->
+            <!-- Note that index starts at 0-->
+        <div
+            *ngFor="let logItem of log; let i = index"
+            [ngStyle]="{'background-color': i >= 4 ? 'blue' : 'transparent'}"
+            [ngClass]="{'white-text': i >= 4}">
+            {{ logItem }}
+        </div>
+        </div>
+    </div>
+</div>
