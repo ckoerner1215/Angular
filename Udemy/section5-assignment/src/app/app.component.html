@@ -1,0 +1,25 @@
+<!-- listen to intervalFired event - see below - (intervalFired)=... -->
+<!-- Pass it a number with $event, which gives us access to the event data, -->
+<!-- which is the number in this case.-->
+
+<!-- Also pass oddNumber to odd-component.ts, using [number]="oddNumber"
+    which has a number property which we added the @Input decorator to.  
+    That is why we can pass in the number value from this app component.-->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <app-game-control (intervalFired)="onIntervalFired($event)"></app-game-control>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <app-odd *ngFor="let oddNumber of oddNumbers" [number]="oddNumber"></app-odd>
+      <app-even *ngFor="let evenNumber of evenNumbers" [number]="evenNumber"></app-even>
+    </div>
+  </div>
+</div>
