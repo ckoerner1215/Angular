@@ -1,4 +1,4 @@
-package com.javahelps.restservice.entity;
+package com.bana.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
