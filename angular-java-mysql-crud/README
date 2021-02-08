@@ -1,0 +1,121 @@
+Java/Spring Boot/MySQL backend:
+
+*************************************************************************************************************************************************************
+cd to demo directory (which is the Java/Spring Boot/MySQL backend)
+Make sure you are in the same directory as the pom.xml file.
+
+Type, on the command line:
+
+    mvn spring-boot:run
+
+
+At this point, the REST API should be up and running.
+
+Should see something like this:
+
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/usr/share/maven/lib/guice.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------------< com.bana:demo >----------------------------
+[INFO] Building demo 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot-maven-plugin:2.4.2:run (default-cli) > test-compile @ demo >>>
+[INFO] 
+[INFO] --- maven-resources-plugin:3.2.0:resources (default-resources) @ demo ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] Copying 1 resource
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ demo ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- maven-resources-plugin:3.2.0:testResources (default-testResources) @ demo ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Using 'UTF-8' encoding to copy filtered properties files.
+[INFO] skip non existing resourceDirectory /home/carolyn/Angular/angular-java-mysql-crud/demo/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ demo ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to /home/carolyn/Angular/angular-java-mysql-crud/demo/target/test-classes
+[INFO] 
+[INFO] <<< spring-boot-maven-plugin:2.4.2:run (default-cli) < test-compile @ demo <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:2.4.2:run (default-cli) @ demo ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.4.2)
+
+2021-02-08 14:03:52.954  INFO 627292 --- [           main] com.bana.Application                     : Starting Application using Java 11.0.9.1 on carolyn-XPS-13-9300 with PID 627292 (/home/carolyn/Angular/angular-java-mysql-crud/demo/target/classes started by carolyn in /home/carolyn/Angular/angular-java-mysql-crud/demo)
+2021-02-08 14:03:52.955  INFO 627292 --- [           main] com.bana.Application                     : No active profile set, falling back to default profiles: default
+2021-02-08 14:03:53.364  INFO 627292 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-02-08 14:03:53.393  INFO 627292 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 1 JPA repository interfaces.
+2021-02-08 14:03:53.687  INFO 627292 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-02-08 14:03:53.694  INFO 627292 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-02-08 14:03:53.694  INFO 627292 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-02-08 14:03:53.750  INFO 627292 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-02-08 14:03:53.750  INFO 627292 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 766 ms
+2021-02-08 14:03:53.862  INFO 627292 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-02-08 14:03:53.885  INFO 627292 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.27.Final
+2021-02-08 14:03:53.943  INFO 627292 --- [           main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-02-08 14:03:53.993  INFO 627292 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-02-08 14:03:54.098  INFO 627292 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-02-08 14:03:54.106  INFO 627292 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2021-02-08 14:03:54.408  INFO 627292 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-02-08 14:03:54.412  INFO 627292 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-02-08 14:03:54.613  WARN 627292 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-02-08 14:03:54.682  INFO 627292 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-08 14:03:54.804  INFO 627292 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-02-08 14:03:54.810  INFO 627292 --- [           main] com.bana.Application                     : Started Application in 2.091 seconds (JVM running for 2.29)
+2021-02-08 14:06:54.192  INFO 627292 --- [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-02-08 14:06:54.193  INFO 627292 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-02-08 14:06:54.193  INFO 627292 --- [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+
+
+**********************************************************************************************************************************************************
+
+Angular Front End:
+
+Go to AngularCRUD directory and type
+
+    ng serve --port 8081
+
+This will start up the Angular front end.  Then you should be able to go to 
+
+   https://localhost:8081
+
+in the browser and see the application.
+
+Should see someting like this on the command line:
+
+carolyn@carolyn-XPS-13-9300:~/Angular/angular-java-mysql-crud/AngularCRUD$ ng serve --port 8081
+✔ Browser application bundle generation complete.
+
+Initial Chunk Files | Names         |      Size
+vendor.js           | vendor        |   3.04 MB
+styles.css          | styles        | 143.29 kB
+polyfills.js        | polyfills     | 141.32 kB
+main.js             | main          |  53.73 kB
+runtime.js          | runtime       |   6.15 kB
+
+                    | Initial Total |   3.37 MB
+
+Build at: 2021-02-08T19:06:23.901Z - Hash: 80a13d13745a6af48676 - Time: 6628ms
+
+** Angular Live Development Server is listening on localhost:8081, open your browser on http://localhost:8081/ **
+
+
+✔ Compiled successfully.
+
