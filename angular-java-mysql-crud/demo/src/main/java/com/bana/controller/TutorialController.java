@@ -21,7 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bana.model.Tutorial;
 import com.bana.repository.TutorialRepository;
 
-@CrossOrigin(origins = "http://localhost:8081")
+//@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api")
 public class TutorialController {
