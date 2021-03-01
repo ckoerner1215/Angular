@@ -23,7 +23,7 @@ c********************************************************
 
          read(5,*) a,b,c
          print *,'a b c   ',a,b,c
-         print *,'Jenkins testing made a change in master branch 3:26'
+         print *,'Running ck001........'
 
          open(unit=9, action="read", form="unformatted")
          open (unit=10,file="ck001-out.txt",action="write")
@@ -41,4 +41,5 @@ c********************************************************
          end do
          close(9)
          close(10)
+         print *,'Done with ck001'
       end program ck001
