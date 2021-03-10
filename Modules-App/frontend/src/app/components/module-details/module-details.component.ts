@@ -69,6 +69,20 @@ export class ModuleDetailsComponent implements OnInit {
         });
   }
 
+  runModule(): void {
+    this.moduleService.run(this.currentModule.id, this.currentModule)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.message = response;
+//          this.message = response.message;
+//          this.message = 'ck001 module has run...';
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
   deleteModule(): void {
     this.moduleService.delete(this.currentModule.id)
       .subscribe(

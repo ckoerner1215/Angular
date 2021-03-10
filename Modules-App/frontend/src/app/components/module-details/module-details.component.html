@@ -50,12 +50,21 @@
 
     <button
       type="submit"
-      class="badge badge-success mb-2"
+      class="badge badge-success mr-2"
       (click)="updateModule()"
     >
       Update
     </button>
-    <p>{{ message }}</p>
+
+    <button
+      type="submit"
+      class="badge badge-warning mb-2"
+      (click)="runModule()"
+    >
+      Run
+    </button>
+    <!-- <p>{{ message }}</p> -->
+    <div innerHTML="{{message}}"></div>
   </div>
 
   <div *ngIf="!currentModule.id">

@@ -1,0 +1,40 @@
+In backend directory:
+mvn spring-boot:run
+
+This starts the REST API.
+
+In GitBash window, in Amazon Worksapces, create a tunnel:
+
+ssh -L 8006:localhost:8006 <username>@<ip address of govcloud server>
+
+http://localhost:8006/api/modules
+(It is not necessary to go to this URL, but if you want to check the modules 
+table in the database, you can do it like this.)
+
+port can be changed in backend/src/main/resources/application.properties
+
+In frontend directory:
+
+npm install
+npm update
+npm install bootstrap
+
+This will create node_modules directory.  You should only need to do this the first
+time you are running the application.
+
+Then, the following command starts the front end application (which accesses the backend):
+
+ng serve
+
+In GitBash window, in Amazon Workspaces, create a tunnel
+
+ssh -L 4444:localhost:4444 <username>@<ip address of govcloud server>
+
+http://localhost:4444
+
+Now, if you go to this URL, you should see the application running, and be able to see all of the modules in the database, and add/delete them also.
+
+Port can be changed in frontend/angular.json
+Search for "port" and change the value there.
+
+

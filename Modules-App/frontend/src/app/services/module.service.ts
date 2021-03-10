@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Module } from '../models/module.model';
 
-const baseUrl = 'http://localhost:8080/api/modules';
+const baseUrl = 'http://localhost:8006/api/modules';
+const baseUrlRun = 'http://localhost:8888/ck001/run';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,10 @@ export class ModuleService {
 
   update(id: any, data: any): Observable<any> {
     return this.http.put(`${baseUrl}/${id}`, data);
+  }
+
+  run(id: any, data: any): Observable<string> {
+    return this.http.get(baseUrlRun, {responseType: 'text'});
   }
 
   delete(id: any): Observable<any> {
