@@ -14,7 +14,7 @@
 	<name>ck001</name>
 	<description>ck001 microservice</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
 		<spring-cloud-services.version>2.3.0.RELEASE</spring-cloud-services.version>
 		<spring-cloud.version>Hoxton.SR10</spring-cloud.version>
 	</properties>
