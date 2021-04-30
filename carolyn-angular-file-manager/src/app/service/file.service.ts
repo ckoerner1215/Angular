@@ -46,7 +46,7 @@ export class FileService implements IFileService {
     var url = environment.baseURL + "8001" + "/" + "listfiles";
     console.log("url: " + url);
     console.log("data: " + data);
-    return this.http.post<String>(url, data);
+    return this.http.post<any>(url, data);
   }
 
 

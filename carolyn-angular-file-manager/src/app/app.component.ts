@@ -24,6 +24,11 @@ export class AppComponent {
     this.fileService.add({ name: 'File A', isFolder: false, parent: 'root' });
     this.fileService.add({ name: 'File B', isFolder: false, parent: 'root' });
 
+    
+    var files = this.fileService.getFileList("/app/carolyn/prod/ck100");
+    console.log("Files:");
+    console.log(files);
+
     this.updateFileElementQuery();
   }
 
