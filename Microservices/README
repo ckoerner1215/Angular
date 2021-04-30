@@ -1,0 +1,6 @@
+For each of the microservices (for a module) start by going to the root directory of the project (say ck001) and typing
+
+mvn spring-boot:run
+
+on the command line.   It will start up and tell you what port it is running on (at the end of the startup message).
+
