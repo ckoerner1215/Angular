@@ -1,0 +1,57 @@
+<div *ngFor="let label of labels; let i = index">
+   <label class="form-label"> <b> {{ label }}</b> :  {{ labelDescriptions[i] }}</label>
+
+   <div *ngIf="label === 'Name'">
+       <b> Description </b> : {{ currentModule.description }}
+   </div>
+
+   <div *ngIf="label !='Name'">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="runInfo[keys[i]]"
+      required
+    />
+   </div>
+
+<!--
+   <div>
+
+
+<form>
+   <h4>mat-select</h4>
+   <mat-form-field>
+      <mat-select placeholder = "Favorite food" 
+         [(ngModel)] = "selectedName" name = "name">
+         <mat-option *ngFor = "let name of namess" 
+            [value] = "name">
+            {{name}}
+         </mat-option>
+      </mat-select>
+   </mat-form-field>
+   <p> Selected name: {{selectedName}} </p> 
+</form>
+
+
+
+   </div>
+
+
+-->
+
+   <br>
+</div>
+
+<div *ngIf=validModule>
+
+<button
+  type="submit"
+  class="badge badge-warning mr-2"
+  (click)="runModule()"
+>  Run
+</button>
+</div>
+<div innerHTML="{{message}}"></div>
+
+
+
