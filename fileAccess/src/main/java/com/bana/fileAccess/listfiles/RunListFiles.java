@@ -2,6 +2,8 @@ package com.bana.fileAccess.listfiles;
 
 import java.io.IOException;
 import java.util.Set;
+import com.bana.fileAccess.listfiles.ListFiles;
+
 
 public class RunListFiles {
 
@@ -15,8 +17,8 @@ public class RunListFiles {
         directory = "/apps/carolyn/prod/ck100";
         Set<String> myListOfFiles2;
 		try {
-			myListOfFiles2 = listfiles.listFilesUsingFileWalk(directory, 2);
-	        System.out.println("List of Files:");
+			myListOfFiles2 = listfiles.listDirectoriesUsingFileWalk(directory,5);
+	        System.out.println("List of Directories:");
 	        System.out.println(myListOfFiles2);
 		} catch (IOException e) {
 			e.printStackTrace();

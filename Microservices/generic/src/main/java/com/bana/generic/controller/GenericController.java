@@ -80,7 +80,8 @@ public class GenericController {
                 RunStatus rs = new RunStatus(runInfo.getName(), 999, false, "Did not run");
                 ProcessBuilder processBuilder = new ProcessBuilder();               
 
-                String command = "cd " + runInfo.getScriptLocation().trim() + " ; ./" + kshFile;
+                //String command = "cd " + runInfo.getScriptLocation().trim() + " ; ./" + kshFile;
+                String command = "cd " + runInfo.getScriptLocation().trim() + " ; " + kshFile;
 
                 System.out.println("command: " + command);
 

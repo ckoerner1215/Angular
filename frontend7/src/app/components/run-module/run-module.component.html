@@ -1,0 +1,72 @@
+<div *ngFor="let label of labels; let i = index">
+   <label class="form-label"> <b> {{ label }}</b> :  {{ labelDescriptions[i] }}</label>
+
+   <div *ngIf="label === 'Name'">
+       <b> Description </b> : {{ currentModule.description }}
+   </div>
+
+   <div *ngIf="label === '.ksh file'">
+<!--    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="runInfo[keys[i]]"
+      required
+    /> -->
+            <select  class="form-control" (change)="changeKshFile($event)">
+                <option disabled>Select File</option>
+                <option *ngFor="let file of listOfFiles">{{file}}</option>
+            </select>
+
+   </div>
+
+   <div *ngIf="label === 'Location of .ksh file'">
+<!--    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="runInfo[keys[i]]"
+      required
+    /> -->
+            <select  class="form-control" (change)="changeDirectory($event)">
+                <option disabled>Select Directory</option>
+                <option *ngFor="let dir of listOfDirectories">{{dir}}</option>
+            </select>
+
+   </div>
+
+   <br>
+
+</div>
+
+<div *ngIf=validModule>
+
+<button
+  type="submit"
+  class="badge badge-warning mr-2"
+  (click)="runModule()"
+>  Run
+</button>
+</div>
+<div innerHTML="{{message}}"></div>
+
+<!--
+<div class="container">
+    <h1>Angular Select Dropdown Example - ItSolutionStuff.com</h1>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <div class="form-group">
+            <label for="website">Website:</label>
+            <select formControlName="website" class="form-control" (change)="changeWebsite($event)">
+                <option disabled>Select Website</option>
+                <option disabled>Choose Website</option>
+                <option *ngFor="let web of websiteList">{{web}}</option>
+            </select>
+        </div>
+
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+    </form>
+</div>
+~-->
+~
+
+

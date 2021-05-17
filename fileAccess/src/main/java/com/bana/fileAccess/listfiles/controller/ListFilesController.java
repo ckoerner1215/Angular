@@ -31,6 +31,24 @@ public class ListFilesController {
 		return myListOfFiles;
 		
 	}
+	@PostMapping("/listdirectories")
+    public Set<String> listDirectories(@RequestBody String directory) {
+		ListFiles listfiles = new ListFiles();
+		Set<String> myListOfDirs = new HashSet<String>();
+                int depth = 5;
+
+
+		try {
+			//myListOfFiles = listfiles.listFilesUsingFileWalk(directory, 2);
+			 myListOfDirs = listfiles.listDirectoriesUsingFileWalk(directory,depth);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return myListOfDirs;
+		
+	}
 
 	
 }

@@ -35,6 +35,17 @@ public class ListFiles {
         }
     }
 
+    public Set<String> listDirectoriesUsingFileWalk(String dir, int depth) throws IOException {
+        try (Stream<Path> stream = Files.walk(Paths.get(dir), depth)) {
+        	System.out.println(stream);
+            return stream
+                .filter(file -> Files.isDirectory(file))
+              //.map(Path::getFileName)
+                .map(Path::toString)
+                .collect(Collectors.toSet());
+        }
+    }
+
     public Set<String> listFilesUsingFileWalk(String dir, int depth) throws IOException {
         try (Stream<Path> stream = Files.walk(Paths.get(dir), depth)) {
             return stream
@@ -45,12 +56,28 @@ public class ListFiles {
         }
     }
 
+    public Set<String> listDirectoriesUsingFileWalkAndVisitor(String dir) throws IOException {
+        Set<String> dirList = new HashSet<>();
+        Files.walkFileTree(Paths.get(dir), new SimpleFileVisitor<Path>() {
+            @Override
+            public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+            	System.out.println(file);
+                if (Files.isDirectory(file)) {
+                	dirList.add(file.getParent()+"/"+file.getFileName()
+                        .toString());
+                }
+                return FileVisitResult.CONTINUE;
+            }
+        });
+        return dirList;
+    }
+
     public Set<String> listFilesUsingFileWalkAndVisitor(String dir) throws IOException {
         Set<String> fileList = new HashSet<>();
         Files.walkFileTree(Paths.get(dir), new SimpleFileVisitor<Path>() {
             @Override
             public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-                if (!Files.isDirectory(file)) {
+                if (!Files.isDirectory(file) && file.toString().contains(".ksh")){
                 	fileList.add(file.getParent()+"/"+file.getFileName()
                         .toString());
                 }
