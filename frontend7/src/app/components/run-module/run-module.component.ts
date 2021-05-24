@@ -3,7 +3,7 @@ import { ModuleService } from 'src/app/services/module.service';
 import { Module } from 'src/app/models/module.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
-
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-run-module',
@@ -25,9 +25,13 @@ export class RunModuleComponent implements OnInit {
    labelDescriptions: Array<string> = [];
    fields: Array<string> = [];
    validModule = true;
+   downloadedFile = '';
+   filename = ''
+ 
+   scriptLocation = '';
+   kshFile = '';
 
    locationOfKsh = '';
-
    listOfFiles: Array<string> = [];
    listOfDirectories: Array<string> = [];
 
@@ -66,6 +70,8 @@ export class RunModuleComponent implements OnInit {
         .subscribe(
         data => {
           this.listOfDirectories = data;
+          this.runInfo['scriptLocation']=this.listOfDirectories[0];
+          this.locationOfKsh = this.listOfDirectories[0];
           console.log('list of directories:  ' + this.listOfDirectories);
         },
         error => {
@@ -79,6 +85,11 @@ export class RunModuleComponent implements OnInit {
         data => {
           this.listOfFiles = data;
           console.log('list of files:  ' + this.listOfFiles);
+          console.log('data[0]: ' + data[0]);
+          this.kshFile = data[0];
+          this.runInfo['kshFile']=data[0];
+          console.log('11111111111' + this.kshFile);
+          console.log('222222222222' + this.runInfo['kshFile']);
         },
         error => {
           console.log(error);
@@ -90,7 +101,8 @@ export class RunModuleComponent implements OnInit {
       .subscribe(
         data => {
           this.runInfo = data['runInfo'];
-          this.locationOfKsh = this.runInfo['scriptLocation'];
+          this.runInfo['scriptLocation'] = this.locationOfKsh;
+          this.runInfo['kshFile'] = this.kshFile;
           this.fields = Object.keys(this.runInfo);
           for (var input of data['inputs']){
                this.labels.push(input['label']);
@@ -110,8 +122,104 @@ export class RunModuleComponent implements OnInit {
         });
   }
 
+  downloadFile(): void {
+    var mess = '  ';
+    var index, i;  
+
+    for (i=0; i < this.runInfo['kshFile'].length; i++){
+           if (this.runInfo['kshFile'].substring(i, i+1) == '/'){
+		   index = i+1;
+	   }
+    }
+    var filename = this.runInfo['kshFile'].substring(index);
+    this.filename = filename;
+
+    console.log("in run-module.ts...........");
+    console.log("kshFile:   " + this.kshFile);
+    console.log("kshFile:   " + this.runInfo['kshFile']);
+    this.moduleService.downloadFile(this.runInfo['kshFile'])
+      .subscribe(
+        response => {
+          console.log("file:  " + this.runInfo['kshFile']);
+          if(response.success){
+             mess = response.output;
+             var blob = new Blob([mess], {type: "text/plain;charset=utf-8", endings:"native"});
+             saveAs(blob, filename);
+          } else {
+             mess = 'There was a problem getting the file. <br>';
+             mess = mess + '   Error code: ' + response.errorCode;
+             mess = mess + '  OUTPUT: ' + response.output;
+             this.message = mess;
+          }
+        },
+        error => {
+          console.log(error);
+          this.message = "Unfortunately, this did not seem to work :(";
+        });
+  
+
+  }
+  showFile(): void {
+    var mess = '  ';
+  
+    console.log("in run-module.ts...........");
+    console.log("kshFile:   " + this.kshFile);
+    console.log("kshFile:   " + this.runInfo['kshFile']);
+    this.moduleService.showFile(this.runInfo['kshFile'])
+      .subscribe(
+        response => {
+          console.log("file:  " + this.runInfo['kshFile']);
+          if(response.success){
+             mess = response.output;
+             mess = mess + '<br>' + 'This is the contents of the .ksh file.';
+             this.message = mess;
+             //var blob = new Blob([mess], {type: "text/plain;charset=utf-8"});
+             //saveAs(blob, "kshfile.txt");
+          } else {
+             mess = 'There was a problem getting the file. <br>';
+             mess = mess + '   Error code: ' + response.errorCode;
+             mess = mess + '  OUTPUT: ' + response.output;
+             this.message = mess;
+          }
+        },
+        error => {
+          console.log(error);
+          this.message = "Unfortunately, this did not seem to work :(";
+        });
+  
+
+  }
+
+  uploadFile(): void {
+    var mess = '  ';
+
+    this.downloadedFile = "/d/Users/carolyn.koerner/Downloads/" + this.filename;
+
+    this.moduleService.uploadFile(this.downloadedFile)
+      .subscribe(
+        response => {
+          if(response.success){
+             mess = response.output;
+          } else {
+             mess = 'There was a problem uploading the file. <br>';
+             mess = mess + '   Error code: ' + response.errorCode;
+             mess = mess + '  OUTPUT: ' + response.output;
+             this.message = mess;
+          }
+        },
+        error => {
+          console.log(error);
+          this.message = "Unfortunately, this did not seem to work :(";
+        });
+  
+
+  }
+
+
   runModule(): void {
     var mess = '  ';
+    console.log("ksh file: " + this.runInfo['kshFile']);
+    console.log("script location: " + this.runInfo['scriptLocation']);
 
     this.moduleService.runWithInputs(this.runInfo)
       .subscribe(
@@ -140,12 +248,14 @@ export class RunModuleComponent implements OnInit {
     console.log(this.runInfo['kshFile']);
     console.log(e.target.value);
     this.runInfo['kshFile']=e.target.value;
+    this.kshFile = e.target.value;
   }
 
   changeDirectory(e: any) {
     console.log(this.runInfo);
     console.log(e.target.value);
     this.runInfo['scriptLocation']=e.target.value;
+    this.scriptLocation=e.target.value;
   }
 
 

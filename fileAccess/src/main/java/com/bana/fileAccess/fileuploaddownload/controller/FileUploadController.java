@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import com.bana.fileAccess.fileuploaddownload.payload.Response;
 import com.bana.fileAccess.fileuploaddownload.service.FileStorageService;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class FileUploadController {
 

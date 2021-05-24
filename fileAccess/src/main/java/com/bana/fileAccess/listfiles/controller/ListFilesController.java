@@ -3,6 +3,11 @@ package com.bana.fileAccess.listfiles.controller;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import com.bana.fileaccess.listfiles.model.RunStatus;
+
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +40,7 @@ public class ListFilesController {
     public Set<String> listDirectories(@RequestBody String directory) {
 		ListFiles listfiles = new ListFiles();
 		Set<String> myListOfDirs = new HashSet<String>();
-                int depth = 5;
+                int depth = 6;
 
 
 		try {
@@ -50,5 +55,100 @@ public class ListFilesController {
 		
 	}
 
+        @PostMapping(path = "/showfile")
+        public RunStatus showFile(@RequestBody String file) {
+                System.out.println("File:  " + file);
+                RunStatus rs = new RunStatus(file, 999, false, "Did not display file");
+                ProcessBuilder processBuilder = new ProcessBuilder();
+
+                String command = "cat " + file + ";";
+                System.out.println("command: " + command);
+
+                processBuilder.command("/bin/sh", "-c", command);
+                String outputline="<br>";
+
+                outputline = outputline + "File: " + file + "<br> ";
+                try {
+
+                    Process process = processBuilder.start();
+
+                    BufferedReader reader =
+                            new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        System.out.println(line);
+                        outputline=outputline+line+" <br>";
+                    }
+                    outputline=outputline + " <br> ";
+
+                    int exitCode = process.waitFor();
+                    rs.setErrorCode(exitCode);
+                    rs.setOutput(outputline);
+                    if (exitCode == 0) {
+                       rs.setSuccess(true);
+                    } else {
+                       rs.setSuccess(false);
+                    }
+                    System.out.println("Exited with error code ------- : " + exitCode);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    rs.setSuccess(false);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    rs.setSuccess(false);
+                }
+                return rs;
+        }
 	
+
+        @PostMapping(path = "/downloadfile")
+        public RunStatus downloadFile(@RequestBody String file) {
+                System.out.println("File:  " + file);
+                RunStatus rs = new RunStatus(file, 999, false, "Did not display file");
+                ProcessBuilder processBuilder = new ProcessBuilder();
+
+                String command = "cat " + file + ";";
+                System.out.println("command: " + command);
+
+                processBuilder.command("/bin/sh", "-c", command);
+                String outputline="\n";
+
+                try {
+
+                    Process process = processBuilder.start();
+
+                    BufferedReader reader =
+                            new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        System.out.println(line);
+                        outputline=outputline+line+"\n";
+                    }
+                    outputline=outputline + "\n";
+
+                    int exitCode = process.waitFor();
+                    rs.setErrorCode(exitCode);
+                    rs.setOutput(outputline);
+                    if (exitCode == 0) {
+                       rs.setSuccess(true);
+                    } else {
+                       rs.setSuccess(false);
+                    }
+                    System.out.println("Exited with error code ------- : " + exitCode);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    rs.setSuccess(false);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    rs.setSuccess(false);
+                }
+                return rs;
+        }
+	
+
+
 }

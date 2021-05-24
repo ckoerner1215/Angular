@@ -16,6 +16,26 @@
                 <option disabled>Select File</option>
                 <option *ngFor="let file of listOfFiles">{{file}}</option>
             </select>
+<button
+  type="submit"
+  class="badge badge-warning mr-2"
+  (click)="showFile()"
+>  Show File
+</button>
+
+<button
+  type="submit"
+  class="badge badge-warning mr-2"
+  (click)="downloadFile()"
+>  Download File
+</button>
+
+<button
+  type="submit"
+  class="badge badge-warning mr-2"
+  (click)="uploadFile()"
+>  Upload File
+</button>
 
    </div>
 

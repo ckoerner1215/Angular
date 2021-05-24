@@ -35,6 +35,9 @@ public class ListFiles {
         }
     }
 
+//
+//   This is the one I am using to get a list of diretories
+//
     public Set<String> listDirectoriesUsingFileWalk(String dir, int depth) throws IOException {
         try (Stream<Path> stream = Files.walk(Paths.get(dir), depth)) {
         	System.out.println(stream);
@@ -72,6 +75,9 @@ public class ListFiles {
         return dirList;
     }
 
+//
+//  This is the one I am calling to get a list of files
+//
     public Set<String> listFilesUsingFileWalkAndVisitor(String dir) throws IOException {
         Set<String> fileList = new HashSet<>();
         Files.walkFileTree(Paths.get(dir), new SimpleFileVisitor<Path>() {

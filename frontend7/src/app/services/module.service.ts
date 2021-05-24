@@ -65,6 +65,34 @@ export class ModuleService {
    
   }
 
+  showFile(file: any): Observable<any> {
+    console.log("in showFile...............");
+    console.log("File: " + file);
+    var fileName = file.trim();
+    var url = environment.fileAccessURL + "/showfile";
+    return this.http.post<any>(url,fileName);
+  }
+
+  uploadFile(file: any): Observable<any> {
+    console.log("in uploadFile...............");
+    console.log("File: " + file);
+    var fileName = file.trim();
+    var myfile = new File(["this is a test..."],fileName,{
+        type: "text/plain"
+    });
+    var url = environment.fileAccessURL + "/uploadFile";
+    var data: FormData = new FormData();
+    data.append('file',myfile);
+    return this.http.post<any>(url,data);
+  }
+
+  downloadFile(file: any): Observable<any> {
+    console.log("File: " + file);
+    var fileName = file.trim();
+    var url = environment.fileAccessURL + "/downloadfile";
+    return this.http.post<any>(url,fileName);
+  }
+
   getListOfFiles(module: any): Observable<any> {
     var key = module.trim();
     var rootdirectory ="/apps/carolyn/prod/";
