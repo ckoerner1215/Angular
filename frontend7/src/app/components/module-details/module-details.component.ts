@@ -34,22 +34,22 @@ export class ModuleDetailsComponent implements OnInit {
     this.getModule(this.route.snapshot.params.id);
   }
 
-  getFields(title: any): void {
-    console.log("title:");
-    console.log(title);
-    this.moduleService.help(title)
-      .subscribe(
-        data => {
-          this.currentModuleFields = data;
-          this.keys = Object.keys(data);
-          for (var key of this.keys){
-               this.values.push(data[key]);
-          }
-        },
-        error => {
-          console.log(error);
-        });
-  }
+//  getFields(title: any): void {
+//    console.log("title:");
+//    console.log(title);
+//    this.moduleService.help(title)
+//      .subscribe(
+//        data => {
+//          this.currentModuleFields = data;
+//          this.keys = Object.keys(data);
+//          for (var key of this.keys){
+//               this.values.push(data[key]);
+//          }
+//        },
+//        error => {
+//          console.log(error);
+//        });
+//  }
 
   getModule(id: string): void {
     this.moduleService.get(id)
@@ -58,7 +58,7 @@ export class ModuleDetailsComponent implements OnInit {
           this.currentModule = data;
           console.log("Should have data now.....");
           console.log(data);
-          this.getFields(this.currentModule.title);
+//          this.getFields(this.currentModule.title);
         },
         error => {
           console.log(error);
@@ -96,17 +96,17 @@ export class ModuleDetailsComponent implements OnInit {
         });
   }
 
-  runModule(): void {
-    this.moduleService.run(this.currentModule.title)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.message = response;
-        },
-        error => {
-          console.log(error);
-        });
-  }
+//  runModule(): void {
+//    this.moduleService.run(this.currentModule.title)
+//      .subscribe(
+//        response => {
+//          console.log(response);
+//          this.message = response;
+//        },
+//        error => {
+//          console.log(error);
+//        });
+//  }
 
   deleteModule(): void {
     this.moduleService.delete(this.currentModule.id)

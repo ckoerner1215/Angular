@@ -14,8 +14,6 @@ import org.springframework.http.MediaType;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import com.bana.generic.model.Input;
-import com.bana.generic.model.ModuleInfo;
 import com.bana.generic.model.RunInfo;
 import com.bana.generic.model.RunStatus;
 
@@ -24,16 +22,18 @@ import com.bana.generic.model.RunStatus;
 @RestController
 public class GenericController {
 
+        // don't really use the rootdir variable....
+        //private String rootdir = "/apps/carolyn/prod/";
+        private String rootdir = "";
 
-        private String rootdir = "/apps/carolyn/prod/";
-
+//don't really use this endpoint.......
         @RequestMapping("/run/{module}")
         public String run(@PathVariable("module") String module) {
 
                 System.out.println("Starting run() in GenericController");
 		ProcessBuilder processBuilder = new ProcessBuilder();
 
-		processBuilder.command("/bin/sh", "-c", "cd " + rootdir + module.trim() + " ; ./" + module.trim()+"_default.ksh");
+		processBuilder.command("/bin/sh", "-c", "cd " + rootdir + module.trim() + " ; ./" + module.trim()+".ksh");
                 String outputline="<br />";
 
 		try {
@@ -60,16 +60,6 @@ public class GenericController {
 		return String.format(outputline);
         }
 
-        @RequestMapping("/help/{module}")
-        public ModuleInfo help(@PathVariable("module") String module) {
-                System.out.println("Returning the information for the microservice.");
-                String kshFile = module.trim() + "_default.ksh";
-                String scriptLocation = rootdir + module.trim();
-                RunInfo runInfo = new RunInfo(module,kshFile,scriptLocation);
-                ModuleInfo moduleInfo = new ModuleInfo(runInfo);
-                return moduleInfo;
-        }
-
         @PostMapping(path = "/run")
         public RunStatus runModule(@RequestBody RunInfo runInfo) {
                 String kshFile = runInfo.getKshFile().trim();
@@ -79,9 +69,14 @@ public class GenericController {
                 System.out.println("Name: " + moduleName);
                 RunStatus rs = new RunStatus(runInfo.getName(), 999, false, "Did not run");
                 ProcessBuilder processBuilder = new ProcessBuilder();               
-
-                //String command = "cd " + runInfo.getScriptLocation().trim() + " ; ./" + kshFile;
-                String command = "cd " + runInfo.getScriptLocation().trim() + " ; " + kshFile;
+                
+                String command = "";
+                if(kshFile.substring(0,1).equals("/")){
+                   command = "cd " + runInfo.getScriptLocation().trim() + " ; " + kshFile;
+                }
+                else{
+                   command = "cd " + runInfo.getScriptLocation().trim() + " ; ./" + kshFile;
+                }
 
                 System.out.println("command: " + command);
 
@@ -111,7 +106,7 @@ public class GenericController {
                     } else {
                        rs.setSuccess(false);
                     }
-                    System.out.println("<br>Exited with error code ------- : " + exitCode);
+                    System.out.println("Exited with error code ------- : " + exitCode);
 
                 } catch (IOException e) {
                     e.printStackTrace();

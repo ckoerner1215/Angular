@@ -4,8 +4,8 @@ package com.bana.generic.model;
 public class RunInfo {
 
 	private String name;
-        private String kshFile;
         private String scriptLocation;
+        private String kshFile;
 	public RunInfo() {
 
 	}

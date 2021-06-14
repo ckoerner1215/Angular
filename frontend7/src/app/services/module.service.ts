@@ -30,59 +30,51 @@ export class ModuleService {
     return this.http.put(`${environment.backendURL}/${id}`, data);
   }
 
-  run(key: any): Observable<string> {
-    console.log("key: " + key);
-    var url = environment.microserviceURL + "/" +  key;
-    console.log("url: " + url);
-    return this.http.get(url, {responseType: 'text'});
-  }
+//  run(key: any): Observable<string> {
+//    console.log("key: " + key);
+//    var url = environment.microserviceURL + "/" +  key;
+//    console.log("url: " + url);
+//    return this.http.get(url, {responseType: 'text'});
+//  }
 
   runWithInputs(data: any): Observable<any> {
-    console.log("runWithInputs    "+data);
-    var key = data.name;
-    console.log("key: " + key);
+//    var key = data.name;
+    console.log("data: ",data);
     var url = environment.microserviceURL;
-    console.log("url: " + url);
-    console.log("data: " + data);
     return this.http.post<String>(url, data);
   }
 
-  help(name: any): Observable<any> {
-    console.log("in help in ModuleService");
-    console.log(name);
-    var key = name.trim();
-    var url = environment.baseURL + "/help/" + key;
-    console.log("url:" + url);
-    return this.http.get(url);
-  }
+//  help(name: any): Observable<any> {
+//    var key = name.trim();
+//    var url = environment.baseURL + "/help/" + key;
+//    return this.http.get(url);
+//  }
 
-  getListOfDirectories(module: any): Observable<any> {
-    var key = module.trim();
-    var rootdirectory ="/apps/carolyn/prod/";
-    var directory = rootdirectory + key;
-    var url = environment.fileAccessURL + "/listdirectories";
-    return this.http.post<any>(url,directory);
-   
-  }
+//  getListOfDirectories(module: any): Observable<any> {
+//    var key = module.trim();
+//    var directory = environment.repoRootDirectory + key;
+//    var url = environment.fileAccessURL + "/listdirectories";
+//    return this.http.post<any>(url,directory);
+//   
+//  }
 
   showFile(file: any): Observable<any> {
-    console.log("in showFile...............");
-    console.log("File: " + file);
     var fileName = file.trim();
     var url = environment.fileAccessURL + "/showfile";
     return this.http.post<any>(url,fileName);
   }
 
-  uploadFile(file: any): Observable<any> {
-    console.log("in uploadFile...............");
-    console.log("File: " + file);
-    var fileName = file.trim();
-    var myfile = new File(["this is a test..."],fileName,{
-        type: "text/plain"
-    });
+  moveFile(moveinfo: any): Observable<any> {
+    console.log(moveinfo.filename); 
+    console.log(moveinfo.destination);
+    var url = environment.fileAccessURL + "/moveToModuleDirectory";
+    return this.http.post<any>(url,moveinfo);
+  }
+
+  uploadFile(file: File): Observable<any> {
     var url = environment.fileAccessURL + "/uploadFile";
     var data: FormData = new FormData();
-    data.append('file',myfile);
+    data.append('file',file);
     return this.http.post<any>(url,data);
   }
 
@@ -95,11 +87,9 @@ export class ModuleService {
 
   getListOfFiles(module: any): Observable<any> {
     var key = module.trim();
-    var rootdirectory ="/apps/carolyn/prod/";
-    var directory = rootdirectory + key;
+    var directory = environment.repoRootDirectory + key;
     var url = environment.fileAccessURL + "/listfiles";
     return this.http.post<any>(url,directory);
-   
   }
 
   delete(id: any): Observable<any> {
