@@ -1,0 +1,57 @@
+How this project was created (using Spring Initializr):
+
+
+Manual Initialization
+
+Navigate to https://start.spring.io. This service pulls in all the dependencies you need for an application and does most of the setup for you.
+
+Choose either Gradle or Maven and the language you want to use. This guide assumes that you chose Java.
+(I chose Maven)
+
+Click Dependencies and select Spring Web, Spring Data JPA, and MySQL Driver.
+
+Click Generate.
+
+Download the resulting ZIP file, which is an archive of a web application that is configured with your choices.
+******************************************************************************************************
+
+To start the application:
+
+In the root directory of this application ( database/) type 
+
+mvn spring-boot:run
+
+
+This will start it.  
+
+Then, open a git bash window in Amazon Workspaces, and type:
+
+ssh -L 8456:localhost:8456 <your govcloud username>@172.31.32.47
+
+You will then have to type your passphrase
+
+This will set up a tunnel so that you can use Postman to make queries to the database.
+
+See below.
+
+You can also type the GET requests into the address bar of a browser window.
+
+******************************************************************************************************
+GET
+http://localhost:8456/api/modules
+http://localhost:8456/api/modules/10
+
+
+POST
+http://localhost:8456/api/modules
+{
+    "moduleName":"mytestmodule",
+    "descrName":"blah",
+    "purpose":"testing",
+    "moduleCategory":"testing",
+    "lastBuild":null,
+    "lastExecuted":null,
+    "nbr_ksh":1
+}
+
+
