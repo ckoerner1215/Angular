@@ -1,18 +1,21 @@
 package com.bana.database.model;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Module_Input")
-public class Module_Input {
+public class Module_Input implements Serializable{
 	@Id
 	//@GeneratedValue(strategy = GenerationType.AUTO)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Input_ID")
 	private int id;
 
-	@Column(name = "Module_ID")
-	private String moduleID;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "Module_ID", nullable = false)
+	private int moduleID;
 	
 	@Column(name = "Input_Filename")
 	private String inputFilename;
@@ -22,7 +25,7 @@ public class Module_Input {
 	
 	@Column(name = "Input_Notes")
 	private String inputNotes;
-
+  
 	public int getId() {
 		return id;
 	}
@@ -31,11 +34,11 @@ public class Module_Input {
 		this.id = id;
 	}
 
-	public String getModuleID() {
+	public int getModuleID() {
 		return moduleID;
 	}
 
-	public void setModuleID(String moduleID) {
+	public void setModuleID(int moduleID) {
 		this.moduleID = moduleID;
 	}
 

@@ -1,11 +1,14 @@
 package com.bana.database.model;
 
 import javax.persistence.*;
+
+import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "Modules")
-public class Module {
+public class Module implements Serializable{
 
 	@Id
 	//@GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,6 +36,10 @@ public class Module {
 
 	@Column(name = "Nbr_ksh")
 	private int nbr_ksh;
+
+        @OneToMany(mappedBy = "moduleID", fetch = FetchType.LAZY,
+              cascade = CascadeType.ALL)
+        private Set<Module_Input> moduleInputs;
 
 	public Module() {
 
