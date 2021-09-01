@@ -16,16 +16,16 @@ public class Module implements Serializable{
 	private int id;
 
 	@Column(name = "ModuleName")
-	private String moduleName;
+	private String name;
 
 	@Column(name = "DescrName")
-	private String descrName;
+	private String description;
 
 	@Column(name = "Purpose")
 	private String purpose;
 
 	@Column(name = "ModuleCategory")
-	private String moduleCategory;
+	private String category;
 
 	@Column(name = "LastBuild")
 	private Date lastBuild;
@@ -34,42 +34,42 @@ public class Module implements Serializable{
 	private Date lastExecuted;
 
 	@Column(name = "Nbr_ksh")
-	private int nbr_ksh;
+	private int numberOfKshFiles;
 
         @OneToMany(mappedBy = "module", fetch = FetchType.LAZY,
               cascade = CascadeType.ALL)
-        private Set<Module_Input> moduleInputs;
+        private Set<ModuleInput> moduleInputs;
 
 	public Module() {
 
 	}
 
-	public Module(String moduleName, String descrName, String purpose,
-                      String moduleCategory, Date lastBuild, Date lastExecuted,
-                      int nbr_ksh) {
-		this.moduleName = moduleName;
-		this.descrName = descrName;
+	public Module(String name, String description, String purpose,
+                      String category, Date lastBuild, Date lastExecuted,
+                      int numberOfKshFiles) {
+		this.name = name;
+		this.description = description;
 		this.purpose = purpose;
-		this.moduleCategory = moduleCategory;
+		this.category = category;
 		this.lastBuild = lastBuild;
 		this.lastExecuted = lastExecuted;
-		this.nbr_ksh = nbr_ksh;
+		this.numberOfKshFiles = numberOfKshFiles;
 	}
 
-	public String getModuleName() {
-		return moduleName;
+	public String getName() {
+		return name;
 	}
 
-	public void setModuleName(String moduleName) {
-		this.moduleName = moduleName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getDescrName() {
-		return descrName;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDescrName(String descrName) {
-		this.descrName = descrName;
+	public void setDescription(String description) {
+		this.description= description;
 	}
 
 	public String getPurpose() {
@@ -80,12 +80,12 @@ public class Module implements Serializable{
 		this.purpose = purpose;
 	}
 
-	public String getModuleCategory() {
-		return moduleCategory;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setModuleCategory(String moduleCategory) {
-		this.moduleCategory = moduleCategory;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public Date getLastBuild() {
@@ -104,12 +104,12 @@ public class Module implements Serializable{
 		this.lastExecuted = lastExecuted;
 	}
 
-	public int getNbr_ksh() {
-		return nbr_ksh;
+	public int getNumberOfKshFiles() {
+		return numberOfKshFiles;
 	}
 
-	public void setNbr_ksh(int nbr_ksh) {
-		this.nbr_ksh = nbr_ksh;
+	public void setNumberOfKshFiles(int numberOfKshFiles) {
+		this.numberOfKshFiles = numberOfKshFiles;
 	}
 
 	public int getId() {
@@ -119,9 +119,9 @@ public class Module implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Module [id=" + id + ", moduleName=" + moduleName + ", descrName=" + descrName + ", purpose=" + purpose
-				+ ", moduleCategory=" + moduleCategory + ", lastBuild=" + lastBuild + ", lastExecuted=" + lastExecuted
-				+ ", nbr_ksh=" + nbr_ksh + "]";
+		return "Module [id=" + id + ", name=" + name + ", description=" + description + ", purpose=" + purpose
+				+ ", category=" + category + ", lastBuild=" + lastBuild + ", lastExecuted=" + lastExecuted
+				+ ", numberOfKshFiles=" + numberOfKshFiles + "]";
 	}
 }
 

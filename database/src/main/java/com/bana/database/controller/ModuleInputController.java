@@ -19,29 +19,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bana.database.model.Module;
-import com.bana.database.model.Module_Input;
+import com.bana.database.model.ModuleInput;
 import com.bana.database.repository.ModuleRepository;
-import com.bana.database.repository.Module_InputRepository;
+import com.bana.database.repository.ModuleInputRepository;
 
 //@CrossOrigin(origins = "http://localhost:8081")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api")
-public class Module_InputController {
+public class ModuleInputController {
 
   @Autowired
-  private Module_InputRepository moduleInputRepository;
+  private ModuleInputRepository moduleInputRepository;
 
   @Autowired
   private ModuleRepository moduleRepository;
 
   @GetMapping("/moduleinputs")
-  public ResponseEntity<List<Module_Input>> getAllModuleInputs() {
+  public ResponseEntity<List<ModuleInput>> getAllModuleInputs() {
     try {
-      List<Module_Input> moduleInputs = new ArrayList<Module_Input>();
-
-        System.out.println("find All Module Inputs");
-        moduleInputRepository.findAll().forEach(moduleInputs::add);
+      List<ModuleInput> moduleInputs = new ArrayList<ModuleInput>();
+      moduleInputRepository.findAll().forEach(moduleInputs::add);
 
       if (moduleInputs.isEmpty()) {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -54,11 +52,8 @@ public class Module_InputController {
   }
 
   @GetMapping("/moduleinputs/{id}")
-  public ResponseEntity<Module_Input> getModuleInputById(@PathVariable("id") int id) {
-    Optional<Module_Input> moduleInputData = moduleInputRepository.findById(id);
-
-    System.out.println("***********");
-    System.out.println(moduleInputData);
+  public ResponseEntity<ModuleInput> getModuleInputById(@PathVariable("id") int id) {
+    Optional<ModuleInput> moduleInputData = moduleInputRepository.findById(id);
 
     if (moduleInputData.isPresent()) {
       return new ResponseEntity<>(moduleInputData.get(), HttpStatus.OK);
@@ -89,8 +84,8 @@ public class Module_InputController {
   }
 
   @GetMapping("/moduleinputs/module/{moduleId}")
-  public ResponseEntity<List<Module_Input>> getInputsByModuleId(@PathVariable("moduleId") Integer moduleId) {
-      List<Module_Input> moduleInputList =  moduleInputRepository.findByModuleId(moduleId);
+  public ResponseEntity<List<ModuleInput>> getInputsByModuleId(@PathVariable("moduleId") Integer moduleId) {
+      List<ModuleInput> moduleInputList =  moduleInputRepository.findByModuleId(moduleId);
     if (!moduleInputList.isEmpty()) {
       return new ResponseEntity<>(moduleInputList, HttpStatus.OK);
     } else {

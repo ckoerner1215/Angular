@@ -12,19 +12,19 @@ public class Workflow {
 	private int id;
 
 	@Column(name = "Workflow_Name")
-	private String workflowName;
+	private String name;
 
 	@Column(name = "Analyst_ID")
 	private int analystID;
 
 	@Column(name = "Workflow_Date")
-	private Date workflowDate;
+	private Date date;
 
 	@Column(name = "Workflow_Notes")
-	private String workflowNotes ;
+	private String notes ;
 
 	@Column(name = "Workflow_Status")
-	private String workflowStatus ;
+	private String status ;
 
 	@Column(name = "Status_Date")
 	private Date statusDate;
@@ -37,12 +37,12 @@ public class Workflow {
 		this.id = id;
 	}
 
-	public String getWorkflowName() {
-		return workflowName;
+	public String getName() {
+		return name;
 	}
 
-	public void setWorkflowName(String workflowName) {
-		this.workflowName = workflowName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getAnalystID() {
@@ -53,28 +53,28 @@ public class Workflow {
 		this.analystID = analystID;
 	}
 
-	public Date getWorkflowDate() {
-		return workflowDate;
+	public Date getDate() {
+		return date;
 	}
 
-	public void setWorkflowDate(Date workflowDate) {
-		this.workflowDate = workflowDate;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
-	public String getWorkflowNotes() {
-		return workflowNotes;
+	public String getNotes() {
+		return notes;
 	}
 
-	public void setWorkflowNotes(String workflowNotes) {
-		this.workflowNotes = workflowNotes;
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
 
-	public String getWorkflowStatus() {
-		return workflowStatus;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setWorkflowStatus(String workflowStatus) {
-		this.workflowStatus = workflowStatus;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Date getStatusDate() {
@@ -87,8 +87,8 @@ public class Workflow {
 
 	@Override
 	public String toString() {
-		return "Workflow [id=" + id + ", workflowName=" + workflowName + ", analystID=" + analystID + ", workflowDate="
-				+ workflowDate + ", workflowNotes=" + workflowNotes + ", workflowStatus=" + workflowStatus
+		return "Workflow [id=" + id + ", name=" + name + ", analystID=" + analystID + ", date="
+				+ date + ", notes=" + notes + ", status=" + status
 				+ ", statusDate=" + statusDate + "]";
 	}
 

@@ -4,7 +4,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "Workflow_Path")
-public class Workflow_Path {
+public class WorkflowPath {
 	@Id
 	//@GeneratedValue(strategy = GenerationType.AUTO)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,10 +21,10 @@ public class Workflow_Path {
 	private String moduleKsh;
 
 	@Column(name = "Path_Notes")
-	private String pathNotes ;
+	private String notes ;
 
 	@Column(name = "Path_Status")
-	private String pathStatus ;
+	private String status ;
 
 	@Column(name = "Status_Date")
 	private Date statusDate;
@@ -61,20 +61,20 @@ public class Workflow_Path {
 		this.moduleKsh = moduleKsh;
 	}
 
-	public String getPathNotes() {
-		return pathNotes;
+	public String getNotes() {
+		return notes;
 	}
 
-	public void setPathNotes(String pathNotes) {
-		this.pathNotes = pathNotes;
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
 
-	public String getPathStatus() {
-		return pathStatus;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setPathStatus(String pathStatus) {
-		this.pathStatus = pathStatus;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Date getStatusDate() {
@@ -87,8 +87,8 @@ public class Workflow_Path {
 
 	@Override
 	public String toString() {
-		return "Workflow_Path [id=" + id + ", workflowID=" + workflowID + ", moduleID=" + moduleID + ", moduleKsh="
-				+ moduleKsh + ", pathNotes=" + pathNotes + ", pathStatus=" + pathStatus + ", statusDate=" + statusDate
+		return "WorkflowPath [id=" + id + ", workflowID=" + workflowID + ", moduleID=" + moduleID + ", moduleKsh="
+				+ moduleKsh + ", notes=" + notes + ", status=" + status + ", statusDate=" + statusDate
 				+ "]";
 	}
 

@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Module_Exec")
-public class Module_Exec {
+public class ModuleExec {
 	@Id
 	//@GeneratedValue(strategy = GenerationType.AUTO)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,13 +26,13 @@ public class Module_Exec {
 	private int analystID ;
 
 	@Column(name = "Exec_VM")
-	private String execVM;
+	private String vm;
 
 	@Column(name = "Exec_Time")
-	private Date execTime ;
+	private Date time ;
 
 	@Column(name = "Exec_Notes")
-	private String execNotes;
+	private String notes;
 
 	public int getId() {
 		return id;
@@ -74,35 +74,35 @@ public class Module_Exec {
 		this.analystID = analystID;
 	}
 
-	public String getExecVM() {
-		return execVM;
+	public String getVm() {
+		return vm;
 	}
 
-	public void setExecVM(String execVM) {
-		this.execVM = execVM;
+	public void setVm(String vm) {
+		this.vm = vm;
 	}
 
-	public Date getExecTime() {
-		return execTime;
+	public Date getTime() {
+		return time;
 	}
 
-	public void setExecTime(Date execTime) {
-		this.execTime = execTime;
+	public void setTime(Date time) {
+		this.time = time;
 	}
 
-	public String getExecNotes() {
-		return execNotes;
+	public String getNotes() {
+		return notes;
 	}
 
-	public void setExecNotes(String execNotes) {
-		this.execNotes = execNotes;
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
 
 	@Override
 	public String toString() {
-		return "Module_Exec [id=" + id + ", moduleID=" + moduleID + ", lastExecuted=" + lastExecuted + ", buildNbr="
-				+ buildNbr + ", analystID=" + analystID + ", execVM=" + execVM + ", execTime=" + execTime
-				+ ", execNotes=" + execNotes + "]";
+		return "ModuleExec [id=" + id + ", moduleID=" + moduleID + ", lastExecuted=" + lastExecuted + ", buildNbr="
+				+ buildNbr + ", analystID=" + analystID + ", vm=" + vm + ", time=" + time
+				+ ", notes=" + notes + "]";
 	}
 
 }

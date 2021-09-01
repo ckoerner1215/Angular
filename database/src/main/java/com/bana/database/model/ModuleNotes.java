@@ -4,7 +4,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "Module_Notes")
-public class Module_Notes {
+public class ModuleNotes {
 	@Id
 	//@GeneratedValue(strategy = GenerationType.AUTO)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,7 +65,7 @@ public class Module_Notes {
 
 	@Override
 	public String toString() {
-		return "Module_Notes [id=" + id + ", moduleID=" + moduleID + ", analystID=" + analystID + ", dateEntered="
+		return "ModuleNotes [id=" + id + ", moduleID=" + moduleID + ", analystID=" + analystID + ", dateEntered="
 				+ dateEntered + ", analystNotes=" + analystNotes + "]";
 	}
 

@@ -37,14 +37,11 @@ public class ModuleController {
 
       System.out.println("moduleName:" + moduleName);
 
-//      if (moduleName == null){
-        System.out.println("findAll");
-        List<Module> mymodules = moduleRepository.findAll();
-        System.out.println(mymodules);
+      if (moduleName == null){
         moduleRepository.findAll().forEach(modules::add);
-//      }
-//      else
-//        moduleRepository.findByModuleNameContaining(moduleName).forEach(modules::add);
+      }
+      else
+        moduleRepository.findByNameContaining(moduleName).forEach(modules::add);
 
       if (modules.isEmpty()) {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -60,9 +57,6 @@ public class ModuleController {
   public ResponseEntity<Module> getModuleById(@PathVariable("id") int id) {
     Optional<Module> moduleData = moduleRepository.findById(id);
 
-    System.out.println("***********");
-    System.out.println(moduleData);
-
     if (moduleData.isPresent()) {
       return new ResponseEntity<>(moduleData.get(), HttpStatus.OK);
     } else {
@@ -74,9 +68,9 @@ public class ModuleController {
   public ResponseEntity<Module> createModule(@RequestBody Module module) {
     try {
       Module _module = moduleRepository
-          .save(new Module(module.getModuleName(), module.getDescrName(), module.getPurpose(),
-                  module.getModuleCategory(), module.getLastBuild(), module.getLastExecuted(),
-                  module.getNbr_ksh()));
+          .save(new Module(module.getName(), module.getDescription(), module.getPurpose(),
+                  module.getCategory(), module.getLastBuild(), module.getLastExecuted(),
+                  module.getNumberOfKshFiles()));
       return new ResponseEntity<>(_module, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -89,13 +83,13 @@ public class ModuleController {
 
     if (moduleData.isPresent()) {
       Module _module = moduleData.get();
-      _module.setModuleName(module.getModuleName());
-      _module.setDescrName(module.getDescrName());
+      _module.setName(module.getName());
+      _module.setDescription(module.getDescription());
       _module.setPurpose(module.getPurpose());
-      _module.setModuleCategory(module.getModuleCategory());
+      _module.setCategory(module.getCategory());
       _module.setLastBuild(module.getLastBuild());
       _module.setLastExecuted(module.getLastExecuted());
-      _module.setNbr_ksh(module.getNbr_ksh());
+      _module.setNumberOfKshFiles(module.getNumberOfKshFiles());
       return new ResponseEntity<>(moduleRepository.save(_module), HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -122,19 +116,5 @@ public class ModuleController {
     }
 
   }
-
-//  @GetMapping("/modules/published")
-//  public ResponseEntity<List<Module>> findByPublished() {
-//    try {
-//      List<Module> modules = moduleRepository.findByPublished(true);
-//
-//      if (modules.isEmpty()) {
-//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//      }
-//      return new ResponseEntity<>(modules, HttpStatus.OK);
-//    } catch (Exception e) {
-//      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-//    }
-//  }
 
 }

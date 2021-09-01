@@ -40,7 +40,8 @@ You can also type the GET requests into the address bar of a browser window.
 GET
 http://localhost:8456/api/modules
 http://localhost:8456/api/modules/10
-
+http://localhost:8456/api/moduleinputs
+http://localhost:8456/api/moduleinputs/module/2
 
 POST
 http://localhost:8456/api/modules

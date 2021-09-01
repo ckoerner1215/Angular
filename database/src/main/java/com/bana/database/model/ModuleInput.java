@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "Module_Input")
-public class Module_Input implements Serializable{
+public class ModuleInput implements Serializable{
 	@Id
 	//@GeneratedValue(strategy = GenerationType.AUTO)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,13 +17,13 @@ public class Module_Input implements Serializable{
 	private Module module;
 	
 	@Column(name = "Input_Filename")
-	private String inputFilename;
+	private String filename;
 	
 	@Column(name = "Input_Type")
-	private String inputType;
+	private String type;
 	
 	@Column(name = "Input_Notes")
-	private String inputNotes;
+	private String notes;
   
 	public int getId() {
 		return id;
@@ -41,34 +41,34 @@ public class Module_Input implements Serializable{
 		this.module = module;
 	}
 
-	public String getInputFilename() {
-		return inputFilename;
+	public String getFilename() {
+		return filename;
 	}
 
-	public void setInputFilename(String inputFilename) {
-		this.inputFilename = inputFilename;
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 
-	public String getInputType() {
-		return inputType;
+	public String getType() {
+		return type;
 	}
 
-	public void setInputType(String inputType) {
-		this.inputType = inputType;
+	public void setType(String type) {
+		this.type = type;
 	}
 
-	public String getInputNotes() {
-		return inputNotes;
+	public String getNotes() {
+		return notes;
 	}
 
-	public void setInputNotes(String inputNotes) {
-		this.inputNotes = inputNotes;
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
 
 	@Override
 	public String toString() {
-		return "Module_Input [id=" + id + ", module=" + module + ", inputFilename=" + inputFilename + ", inputType="
-				+ inputType + ", inputNotes=" + inputNotes + "]";
+		return "ModuleInput [id=" + id + ", module=" + module + ", Filename=" + filename + ", Type="
+				+ type + ", Notes=" + notes + "]";
 	}
 
 }
