@@ -37,14 +37,14 @@ public class ModuleController {
 
       System.out.println("moduleName:" + moduleName);
 
-      if (moduleName == null){
+//      if (moduleName == null){
         System.out.println("findAll");
         List<Module> mymodules = moduleRepository.findAll();
         System.out.println(mymodules);
         moduleRepository.findAll().forEach(modules::add);
-      }
-      else
-        moduleRepository.findByModuleNameContaining(moduleName).forEach(modules::add);
+//      }
+//      else
+//        moduleRepository.findByModuleNameContaining(moduleName).forEach(modules::add);
 
       if (modules.isEmpty()) {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

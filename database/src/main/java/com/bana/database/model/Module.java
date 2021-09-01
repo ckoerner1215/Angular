@@ -1,7 +1,6 @@
 package com.bana.database.model;
 
 import javax.persistence.*;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -37,7 +36,7 @@ public class Module implements Serializable{
 	@Column(name = "Nbr_ksh")
 	private int nbr_ksh;
 
-        @OneToMany(mappedBy = "moduleID", fetch = FetchType.LAZY,
+        @OneToMany(mappedBy = "module", fetch = FetchType.LAZY,
               cascade = CascadeType.ALL)
         private Set<Module_Input> moduleInputs;
 

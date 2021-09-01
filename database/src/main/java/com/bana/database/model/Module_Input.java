@@ -1,8 +1,7 @@
 package com.bana.database.model;
 
-import java.io.Serializable;
-
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "Module_Input")
@@ -13,9 +12,9 @@ public class Module_Input implements Serializable{
 	@Column(name = "Input_ID")
 	private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+        @ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "Module_ID", nullable = false)
-	private int moduleID;
+	private Module module;
 	
 	@Column(name = "Input_Filename")
 	private String inputFilename;
@@ -34,12 +33,12 @@ public class Module_Input implements Serializable{
 		this.id = id;
 	}
 
-	public int getModuleID() {
-		return moduleID;
+	public Module getModule() {
+		return module;
 	}
 
-	public void setModuleID(int moduleID) {
-		this.moduleID = moduleID;
+	public void setModule(Module module) {
+		this.module = module;
 	}
 
 	public String getInputFilename() {
@@ -68,7 +67,7 @@ public class Module_Input implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Module_Input [id=" + id + ", moduleID=" + moduleID + ", inputFilename=" + inputFilename + ", inputType="
+		return "Module_Input [id=" + id + ", module=" + module + ", inputFilename=" + inputFilename + ", inputType="
 				+ inputType + ", inputNotes=" + inputNotes + "]";
 	}
 
