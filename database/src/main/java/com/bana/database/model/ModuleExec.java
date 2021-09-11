@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import com.bana.database.model.Module;
+
 @Entity
 @Table(name = "Module_Exec")
 public class ModuleExec {
@@ -13,17 +15,19 @@ public class ModuleExec {
 	@Column(name = "Exec_ID")
 	private int id;
 
-	@Column(name = "Module_ID")
-	private String moduleID;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "Module_ID", nullable = false)
+	private Module module;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "Analyst_ID", nullable = false)
+	private Analyst analyst;
 
 	@Column(name = "LastExecuted")
 	private Date lastExecuted ;
 
 	@Column(name = "BuildNbr")
 	private int buildNbr;
-
-	@Column(name = "Analyst_ID")
-	private int analystID ;
 
 	@Column(name = "Exec_VM")
 	private String vm;
@@ -42,14 +46,6 @@ public class ModuleExec {
 		this.id = id;
 	}
 
-	public String getModuleID() {
-		return moduleID;
-	}
-
-	public void setModuleID(String moduleID) {
-		this.moduleID = moduleID;
-	}
-
 	public Date getLastExecuted() {
 		return lastExecuted;
 	}
@@ -64,14 +60,6 @@ public class ModuleExec {
 
 	public void setBuildNbr(int buildNbr) {
 		this.buildNbr = buildNbr;
-	}
-
-	public int getAnalystID() {
-		return analystID;
-	}
-
-	public void setAnalystID(int analystID) {
-		this.analystID = analystID;
 	}
 
 	public String getVm() {
@@ -98,10 +86,18 @@ public class ModuleExec {
 		this.notes = notes;
 	}
 
+	public Module getModule() {
+		return module;
+	}
+
+	public void setModule(Module module) {
+		this.module = module;
+	}
+
 	@Override
 	public String toString() {
-		return "ModuleExec [id=" + id + ", moduleID=" + moduleID + ", lastExecuted=" + lastExecuted + ", buildNbr="
-				+ buildNbr + ", analystID=" + analystID + ", vm=" + vm + ", time=" + time
+		return "ModuleExec [id=" + id + ", module=" + module + ", lastExecuted=" + lastExecuted + ", buildNbr="
+				+ buildNbr + ", analystID=" + analyst.getId() + ", vm=" + vm + ", time=" + time
 				+ ", notes=" + notes + "]";
 	}
 

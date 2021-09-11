@@ -6,13 +6,15 @@ import java.io.Serializable;
 @Entity
 @Table(name = "Module_Input")
 public class ModuleInput implements Serializable{
+	
+
 	@Id
 	//@GeneratedValue(strategy = GenerationType.AUTO)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Input_ID")
 	private int id;
 
-        @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "Module_ID", nullable = false)
 	private Module module;
 	
@@ -24,6 +26,15 @@ public class ModuleInput implements Serializable{
 	
 	@Column(name = "Input_Notes")
 	private String notes;
+	
+	public ModuleInput(Module module, String filename, String type, String notes) {
+		super();
+		this.module = module;
+		this.filename = filename;
+		this.type = type;
+		this.notes = notes;
+	}
+	
   
 	public int getId() {
 		return id;

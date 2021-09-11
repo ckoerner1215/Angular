@@ -36,9 +36,25 @@ public class Module implements Serializable{
 	@Column(name = "Nbr_ksh")
 	private int numberOfKshFiles;
 
-        @OneToMany(mappedBy = "module", fetch = FetchType.LAZY,
-              cascade = CascadeType.ALL)
-        private Set<ModuleInput> moduleInputs;
+    @OneToMany(mappedBy = "module", fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL)
+    private Set<WorkflowPath> paths;
+
+    @OneToMany(mappedBy = "module", fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL)
+    private Set<ModuleExec> executions;
+
+    @OneToMany(mappedBy = "module", fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL)
+    private Set<ModuleNotes> notes;
+
+    @OneToMany(mappedBy = "module", fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL)
+    private Set<ModuleInput> inputs;
+
+    @OneToMany(mappedBy = "module", fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL)
+    private Set<ModuleOutput> outputs;
 
 	public Module() {
 
@@ -110,6 +126,51 @@ public class Module implements Serializable{
 
 	public void setNumberOfKshFiles(int numberOfKshFiles) {
 		this.numberOfKshFiles = numberOfKshFiles;
+	}
+
+
+	public Set<ModuleExec> getExecutions() {
+		return executions;
+	}
+
+	public void setExecutions(Set<ModuleExec> executions) {
+		this.executions = executions;
+	}
+
+	public Set<ModuleNotes> getNotes() {
+		return notes;
+	}
+
+	public void setNotes(Set<ModuleNotes> notes) {
+		this.notes = notes;
+	}
+
+	public Set<ModuleInput> getInputs() {
+		return inputs;
+	}
+
+	public void setInputs(Set<ModuleInput> inputs) {
+		this.inputs = inputs;
+	}
+
+	public Set<ModuleOutput> getOutputs() {
+		return outputs;
+	}
+
+	public void setOutputs(Set<ModuleOutput> outputs) {
+		this.outputs = outputs;
+	}
+
+	public Set<WorkflowPath> getPaths() {
+		return paths;
+	}
+
+	public void setPaths(Set<WorkflowPath> paths) {
+		this.paths = paths;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getId() {

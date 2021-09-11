@@ -1,5 +1,8 @@
 package com.bana.database.model;
 import javax.persistence.*;
+
+import com.bana.database.model.Module;
+
 import java.util.Date;
 
 @Entity
@@ -11,11 +14,13 @@ public class ModuleNotes {
 	@Column(name = "Notes_ID")
 	private int id;
 
-	@Column(name = "Module_ID")
-	private int moduleID;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "Module_ID", nullable = false)
+	private Module module;
 
-	@Column(name = "Analyst_ID")
-	private int analystID;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "Analyst_ID", nullable = false)
+	private Analyst analyst;
 
 	@Column(name = "Date_Entered")
 	private Date dateEntered ;
@@ -31,21 +36,6 @@ public class ModuleNotes {
 		this.id = id;
 	}
 
-	public int getModuleID() {
-		return moduleID;
-	}
-
-	public void setModuleID(int moduleID) {
-		this.moduleID = moduleID;
-	}
-
-	public int getAnalystID() {
-		return analystID;
-	}
-
-	public void setAnalystID(int analystID) {
-		this.analystID = analystID;
-	}
 
 	public Date getDateEntered() {
 		return dateEntered;
@@ -63,9 +53,25 @@ public class ModuleNotes {
 		this.analystNotes = analystNotes;
 	}
 
+	public Module getModule() {
+		return module;
+	}
+
+	public void setModule(Module module) {
+		this.module = module;
+	}
+
+	public Analyst getAnalyst() {
+		return analyst;
+	}
+
+	public void setAnalyst(Analyst analyst) {
+		this.analyst = analyst;
+	}
+
 	@Override
 	public String toString() {
-		return "ModuleNotes [id=" + id + ", moduleID=" + moduleID + ", analystID=" + analystID + ", dateEntered="
+		return "ModuleNotes [id=" + id + ", moduleID=" + module.getId() + ", analystID=" + analyst.getId() + ", dateEntered="
 				+ dateEntered + ", analystNotes=" + analystNotes + "]";
 	}
 

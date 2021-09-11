@@ -13,7 +13,7 @@ public class ModuleOutput implements Serializable{
 	@Column(name = "Output_ID")
 	private int id;
 
-        @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "Module_ID", nullable = false)
 	private Module module;
 

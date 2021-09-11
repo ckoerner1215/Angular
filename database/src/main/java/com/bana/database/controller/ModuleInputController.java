@@ -61,7 +61,19 @@ public class ModuleInputController {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
   }
-
+  
+  @PostMapping("/moduleinputs")
+  public ResponseEntity<ModuleInput> createModuleInput(@RequestBody ModuleInput moduleInput) {
+    try {
+      ModuleInput _moduleInput = moduleInputRepository
+          .save(new ModuleInput(moduleInput.getModule(), moduleInput.getFilename(), 
+        		        moduleInput.getType(), moduleInput.getNotes()));
+      return new ResponseEntity<>(_moduleInput, HttpStatus.CREATED);
+    } catch (Exception e) {
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+  
   @DeleteMapping("/moduleinputs/{id}")
   public ResponseEntity<HttpStatus> deleteModuleInput(@PathVariable("id") int id) {
     try {

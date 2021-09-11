@@ -1,6 +1,7 @@
 package com.bana.database.model;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "Workflow")
@@ -14,8 +15,13 @@ public class Workflow {
 	@Column(name = "Workflow_Name")
 	private String name;
 
-	@Column(name = "Analyst_ID")
-	private int analystID;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "Analyst_ID", nullable = false)
+	private Analyst analyst;
+
+    @OneToMany(mappedBy = "workflow", fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL)
+    private Set<WorkflowPath> paths;
 
 	@Column(name = "Workflow_Date")
 	private Date date;
@@ -43,14 +49,6 @@ public class Workflow {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public int getAnalystID() {
-		return analystID;
-	}
-
-	public void setAnalystID(int analystID) {
-		this.analystID = analystID;
 	}
 
 	public Date getDate() {
@@ -85,9 +83,25 @@ public class Workflow {
 		this.statusDate = statusDate;
 	}
 
+	public Analyst getAnalyst() {
+		return analyst;
+	}
+
+	public void setAnalyst(Analyst analyst) {
+		this.analyst = analyst;
+	}
+
+	public Set<WorkflowPath> getPaths() {
+		return paths;
+	}
+
+	public void setPaths(Set<WorkflowPath> paths) {
+		this.paths = paths;
+	}
+
 	@Override
 	public String toString() {
-		return "Workflow [id=" + id + ", name=" + name + ", analystID=" + analystID + ", date="
+		return "Workflow [id=" + id + ", name=" + name + ", analyst=" + analyst + ", date="
 				+ date + ", notes=" + notes + ", status=" + status
 				+ ", statusDate=" + statusDate + "]";
 	}

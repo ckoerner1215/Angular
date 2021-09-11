@@ -11,11 +11,13 @@ public class WorkflowPath {
 	@Column(name = "Path_ID")
 	private int id;
 
-	@Column(name = "Workflow_ID")
-	private int workflowID;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "Module_ID", nullable = false)
+	private Module module;
 
-	@Column(name = "Module_ID")
-	private int moduleID;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "Workflow_ID", nullable = false)
+	private Workflow workflow;
 
 	@Column(name = "Module_ksh")
 	private String moduleKsh;
@@ -35,22 +37,6 @@ public class WorkflowPath {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getWorkflowID() {
-		return workflowID;
-	}
-
-	public void setWorkflowID(int workflowID) {
-		this.workflowID = workflowID;
-	}
-
-	public int getModuleID() {
-		return moduleID;
-	}
-
-	public void setModuleID(int moduleID) {
-		this.moduleID = moduleID;
 	}
 
 	public String getModuleKsh() {
@@ -85,9 +71,25 @@ public class WorkflowPath {
 		this.statusDate = statusDate;
 	}
 
+	public Workflow getWorkflow() {
+		return workflow;
+	}
+
+	public void setWorkflow(Workflow workflow) {
+		this.workflow = workflow;
+	}
+
+	public Module getModule() {
+		return module;
+	}
+
+	public void setModule(Module module) {
+		this.module = module;
+	}
+
 	@Override
 	public String toString() {
-		return "WorkflowPath [id=" + id + ", workflowID=" + workflowID + ", moduleID=" + moduleID + ", moduleKsh="
+		return "WorkflowPath [id=" + id + ", workflowId=" + workflow.getId() + ", moduleID=" + module.getId() + ", moduleKsh="
 				+ moduleKsh + ", notes=" + notes + ", status=" + status + ", statusDate=" + statusDate
 				+ "]";
 	}
