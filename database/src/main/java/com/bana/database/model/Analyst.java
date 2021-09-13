@@ -35,6 +35,14 @@ public class Analyst {
     @OneToMany(mappedBy = "analyst", fetch = FetchType.LAZY,
         cascade = CascadeType.ALL)
     private Set<ModuleNotes> moduleNotes;
+    
+	public Analyst(String lastName, String firstName, String organization, Date lastUpdated) {
+		super();
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.organization = organization;
+		this.lastUpdated = lastUpdated;
+	}
 
 	public int getId() {
 		return id;

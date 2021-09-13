@@ -28,6 +28,14 @@ public class ModuleNotes {
 	@Column(name = "AnalystNotes")
 	private String analystNotes;
 
+	public ModuleNotes(Module module, Analyst analyst, Date dateEntered, String analystNotes) {
+		super();
+		this.module = module;
+		this.analyst = analyst;
+		this.dateEntered = dateEntered;
+		this.analystNotes = analystNotes;
+	}
+
 	public int getId() {
 		return id;
 	}

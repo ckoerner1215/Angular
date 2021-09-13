@@ -19,6 +19,7 @@ public class DatabaseApplication {
 		
 	}
 	
+	/*
 	@Bean
 	  public CommandLineRunner demo(ModuleInputRepository moduleInputRepository, ModuleRepository moduleRepository) {
 	    return (args) -> {
@@ -42,4 +43,5 @@ public class DatabaseApplication {
 	    	
 	    };
 	}
+	*/
 }

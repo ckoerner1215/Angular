@@ -7,6 +7,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "Module_Output")
 public class ModuleOutput implements Serializable{
+
 	@Id
 	//@GeneratedValue(strategy = GenerationType.AUTO)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +26,14 @@ public class ModuleOutput implements Serializable{
 	
 	@Column(name = "Output_Notes")
 	private String notes;
+	
+	public ModuleOutput(Module module, String filename, String type, String notes) {
+		super();
+		this.module = module;
+		this.filename = filename;
+		this.type = type;
+		this.notes = notes;
+	}
 
 	public int getId() {
 		return id;
