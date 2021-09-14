@@ -31,6 +31,17 @@ public class WorkflowPath {
 	@Column(name = "Status_Date")
 	private Date statusDate;
 
+	public WorkflowPath(Module module, Workflow workflow, String moduleKsh, String notes, String status, Date statusDate) {
+		super();
+		this.module = module;
+		this.workflow = workflow;
+		this.moduleKsh = moduleKsh;
+		this.notes = notes;
+		this.status = status;
+		this.statusDate = statusDate;
+	}
+
+
 	public int getId() {
 		return id;
 	}
