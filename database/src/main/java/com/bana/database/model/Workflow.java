@@ -35,6 +35,16 @@ public class Workflow {
 	@Column(name = "Status_Date")
 	private Date statusDate;
 
+	public Workflow(String name, Analyst analyst, Date date, String notes, String status, Date statusDate) {
+		super();
+		this.name = name;
+		this.analyst = analyst;
+		this.date = date;
+		this.notes = notes;
+		this.status = status;
+		this.statusDate = statusDate;
+	}
+
 	public int getId() {
 		return id;
 	}

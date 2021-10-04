@@ -38,6 +38,18 @@ public class ModuleExec {
 	@Column(name = "Exec_Notes")
 	private String notes;
 
+        public ModuleExec(Module module, Analyst analyst, Date lastExecuted, int buildNbr, 
+              String vm, Date time, String notes) {
+		super();
+		this.module = module;
+		this.analyst = analyst;
+		this.lastExecuted = lastExecuted;
+		this.buildNbr = buildNbr;
+                this.vm = vm;
+		this.time = time;
+		this.notes = notes;
+	}
+
 	public int getId() {
 		return id;
 	}

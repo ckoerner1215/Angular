@@ -17,12 +17,21 @@ Download the resulting ZIP file, which is an archive of a web application that i
 
 To start the application:
 
-In the root directory of this application ( database/) type 
-
-mvn spring-boot:run
+In the root directory of this application ( database/) type :
 
 
-This will start it.  
+mvn spring-boot:run -Dstart-class=com.bana.database.DatabaseFiller
+
+or
+
+mvn spring-boot:run -Dstart-class=com.bana.database.DatabaseApplication
+
+Since I have two main classes, we have to specify which one to use.  
+The first one fills in our database with sample data.  
+The second one just starts up the application so we have access to
+the REST endpoints.
+
+
 
 Then, open a git bash window in Amazon Workspaces, and type:
 
